@@ -13,7 +13,12 @@ if ! command -v jq &> /dev/null; then
     echo "jq is not installed on system"; exit 1;
 fi
 
-echo "Processing Vim Plugins..."
+# handle current vimrc
+if [ -s ".vimrc" ]; then
+    cp ".vimrc" "${HOME}" && echo "- Copied vimrc to '${HOME}'"
+fi
+
+echo "- Processing Vim Plugins..."
 # loop plugins for processing
 jq -c '.plugins[]' plugins.json | while read i; do
     pluginName=$( echo $i | jq -rc '.name' )
@@ -27,8 +32,14 @@ jq -c '.plugins[]' plugins.json | while read i; do
     echo "  > ${pluginName}"
     # if directory doesnt exist then install
     if [ ! -d $pluginDir ]; then
-        git clone $pluginGit $pluginDir
-        echo "      installed"
+        git clone $pluginGit $pluginDir > /dev/null 2>&1
+        
+        # check plugin installation
+        if [ -d $pluginDir ]; then
+            echo "      installed to '${pluginDir}'"
+        else
+            echo "      ERROR: failed to install plugin"
+        fi
     else
         cd ${pluginDir}
         git pull > /dev/null 2>&1
