@@ -1,7 +1,7 @@
 " enable plugins
-filetype on " enable file type detection
-filetype plugin on " load plugin for detected filetype
-filetype indent on " load indent file for detected filetype
+"filetype on " enable file type detection
+"filetype plugin on " load plugin for detected filetype
+"filetype indent on " load indent file for detected filetype
 syntax on " syntax highlighting
 
 " TABS
@@ -25,6 +25,22 @@ set listchars=tab:>-
 set hlsearch
 hi Search ctermbg=LightYellow
 hi Search ctermfg=Red
+
+" ---- PLUGINS ------- ( install with :PlugInstall ) -----------------------------------------
+" Specify a directory for plugins
+call plug#begin('~/.vim/plugged')
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'vim-airline/vim-airline', { 'tag': '*' }
+Plug 'tpope/vim-fugitive', { 'tag': '*' }
+Plug 'ciaranm/detectindent', { 'tag': '*' }
+Plug 'maxmellon/vim-jsx-pretty', { 'tag': '*' }
+
+" Initialize plugin system
+call plug#end()
 
 " ---- AUTO-COMPLETE -------------------------------------------------------------------------
 set completeopt+=noselect " dont select a word on initially attempting autocomplete
