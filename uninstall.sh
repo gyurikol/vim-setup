@@ -1,12 +1,8 @@
 #! /bin/bash
 
 : '
-    load vim setup and plugins
+    uninstall vim plugins
 '
-
-# install json query
-#sudo apt install jq # debian/ubuntu
-#brew install jq # mac
 
 # check jq
 if ! command -v jq &> /dev/null; then
@@ -25,7 +21,7 @@ jq -c '.plugins[]' plugins.json | while read i; do
     if [ -z $pluginDir ]; then echo "plugin directory not setup in plugin json file"; exit 1; fi
 
     echo "  > ${pluginName}"
-    # if directory doesnt exist then install
+    # if directory exists then uninstall
     if [ -d $pluginDir ]; then
         rm -rf ${pluginDir}
         echo "      plugin removed"
