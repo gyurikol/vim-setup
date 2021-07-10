@@ -19,8 +19,8 @@ if ! command -v jq &> /dev/null; then
 fi
 
 # handle current vimrc
-if [ -s ".vimrc" ]; then
-    cp ".vimrc" "${HOME}" && echo "- Copied vimrc to '${HOME}'"
+if [ -s "${HOME}/.vim/setup/.vimrc" ]; then
+    cp "${HOME}/.vim/setup/.vimrc" "${HOME}" && echo "- Copied vimrc to '${HOME}'"
 fi
 
 echo "- Processing Vim Plugins..."
