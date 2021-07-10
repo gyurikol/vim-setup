@@ -3,9 +3,17 @@
 : '
     load vim setup and plugins
 '
-if [ ! -s ".git" ]; then
-    echo "no .git file present in directory"
+vimSetupDir="${HOME}/.vim/setup/"
+if [ ! -d ${vimSetupDir} ]; then
+    echo "vim setup directory does not exist"; exit 1
+else
+    cd ${vimSetupDir}
 fi
+
+if [ ! -s ".git" ]; then
+    echo "no .git file present in directory"; exit 1
+fi
+
 echo "--- Loading Vim Startup -------------------"
 git pull > /dev/null 2>&1
 
@@ -25,7 +33,7 @@ fi
 
 echo "- Processing Vim Plugins..."
 # loop plugins for processing
-jq -c '.plugins[]' plugins.json | while read i; do
+jq -c '.plugins[]' ${HOME}/.vim/setup/plugins.json | while read i; do
     pluginName=$( echo $i | jq -rc '.name' )
     pluginGit=$( echo $i | jq -rc '.git' )
     pluginDir=$( echo $i | jq -rc '.setupdir' | awk -v awkvar="${HOME}" '{print awkvar"/.vim/"$1}' )
