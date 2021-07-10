@@ -3,6 +3,7 @@
 : '
     load vim setup and plugins
 '
+echo "--- Loading Vim Startup -------------------"
 
 # install json query
 #sudo apt install jq # debian/ubuntu
