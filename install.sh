@@ -3,7 +3,11 @@
 : '
     load vim setup and plugins
 '
+if [ ! -s ".git" ]; then
+    echo "no .git file present in directory"
+fi
 echo "--- Loading Vim Startup -------------------"
+git pull > /dev/null 2>&1
 
 # install json query
 #sudo apt install jq # debian/ubuntu
