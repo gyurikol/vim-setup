@@ -5,7 +5,7 @@
 syntax on " syntax highlighting
 
 " TABS
-set tabstop=8 " tab space-width
+set tabstop=4 " tab space-width
 set softtabstop=0 " non-zero ill make tab key insert spaces to simulate tab stops
 set expandtab " replace tab with spaces
 set shiftwidth=4 " when tab is pressed the length of movement
