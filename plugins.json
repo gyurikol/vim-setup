@@ -19,6 +19,11 @@
             "name": "vim-fugitive",
             "git": "https://github.com/tpope/vim-fugitive.git",
             "setupdir": "pack/dist/start/vim-fugitive"
+        },
+        {
+            "name": "detectindent",
+            "git": "https://github.com/ciaranm/detectindent",
+            "setupdir": "pack/tpope/start/detectindent"
         }
     ]
 }
