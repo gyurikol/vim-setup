@@ -42,20 +42,20 @@ jq -c '.plugins[]' ${HOME}/.vim/setup/plugins.json | while read i; do
     if [ -z $pluginGit ]; then echo "plugin git url not setup in plugin json file"; exit 1; fi
     if [ -z $pluginDir ]; then echo "plugin directory not setup in plugin json file"; exit 1; fi
 
-    echo "  > ${pluginName}"
+    echo -ne "  > ${pluginName} ... "
     # if directory doesnt exist then install
     if [ ! -d $pluginDir ]; then
         git clone $pluginGit $pluginDir > /dev/null 2>&1
         
         # check plugin installation
         if [ -d $pluginDir ]; then
-            echo "      installed to '${pluginDir}'"
+            echo "installed to '${pluginDir}'"
         else
-            echo "      ERROR: failed to install plugin"
+            echo "ERROR: failed to install plugin"
         fi
     else
         cd ${pluginDir}
         git pull > /dev/null 2>&1
-        test $? -eq 0 && echo "      up-to-date"
+        test $? -eq 0 && echo "up-to-date"
     fi
 done
