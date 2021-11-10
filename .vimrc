@@ -26,6 +26,9 @@ set hlsearch
 hi Search ctermbg=LightYellow
 hi Search ctermfg=Red
 
+" first run in console
+"    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" then run :PlugInstall in vim
 " ---- PLUGINS ------- ( install with :PlugInstall ) -----------------------------------------
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
