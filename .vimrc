@@ -41,6 +41,7 @@ Plug 'vim-airline/vim-airline', { 'tag': '*' }
 Plug 'tpope/vim-fugitive', { 'tag': '*' }
 Plug 'ciaranm/detectindent', { 'tag': '*' }
 Plug 'maxmellon/vim-jsx-pretty', { 'tag': '*' }
+Plug 'davidhalter/jedi-vim', { 'tag': '*' }
 
 " Initialize plugin system
 call plug#end()
