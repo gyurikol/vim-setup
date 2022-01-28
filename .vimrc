@@ -17,14 +17,16 @@ set relativenumber
 " show ruler information on bottom
 set ruler
 
-" show tab characters in vim editor
-set list
-set listchars=tab:>-
-
 " highlight search
 set hlsearch
 hi Search ctermbg=LightYellow
 hi Search ctermfg=Red
+
+" diff colors
+highlight DiffAdd    cterm=bold ctermfg=10  ctermbg=29  gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=9   ctermbg=1   gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=101 ctermbg=100 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=11  ctermbg=130 gui=none guifg=bg guibg=Red
 
 " first run in console
 "    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -35,13 +37,30 @@ call plug#begin('~/.vim/plugged')
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+:nnoremap <C-g> :NERDTreeToggle<CR>
+
 " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
 Plug 'fatih/vim-go', { 'tag': '*' }
+let g:go_fmt_command = "goimports" " Run goimports along gofmt on each save     
+let g:go_auto_type_info = 1 " Automatically get signature/type info for object under cursor  
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+
 Plug 'vim-airline/vim-airline', { 'tag': '*' }
+let g:airline_powerline_fonts = 1 " Allow powerline fonts
+
 Plug 'tpope/vim-fugitive', { 'tag': '*' }
-Plug 'ciaranm/detectindent', { 'tag': '*' }
+
 Plug 'maxmellon/vim-jsx-pretty', { 'tag': '*' }
+
 Plug 'davidhalter/jedi-vim', { 'tag': '*' }
+
+Plug 'ryanoasis/vim-devicons', { 'tag': '*' }
+set encoding=UTF-8
+set guifont=DroidSansMono\ Nerd\ Font\ 11
 
 " Initialize plugin system
 call plug#end()
@@ -51,25 +70,4 @@ set completeopt+=noselect " dont select a word on initially attempting autocompl
 
 " language autocomplete mapping
 au filetype go inoremap <buffer> . .<C-x><C-o>
-
-" ---- NERDTree ------------------------------------------------------------------------------
-:nnoremap <C-g> :NERDTreeToggle<CR>
-
-" ---- VIM-AIRLINE ---------------------------------------------------------------------------
-let g:airline_powerline_fonts = 1 " Allow powerline fonts
-
-" ---- VIM GO --------------------------------------------------------------------------------
-let g:go_fmt_command = "goimports" " Run goimports along gofmt on each save     
-let g:go_auto_type_info = 1 " Automatically get signature/type info for object under cursor  
-
-" Go syntax highlighting
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
-
-" ---- DETECT-INDENTATION --------------------------------------------------------------------
-:autocmd BufReadPost * :DetectIndent " detect indentation on load
-
 
